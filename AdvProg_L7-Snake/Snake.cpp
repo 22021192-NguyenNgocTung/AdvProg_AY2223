@@ -16,6 +16,12 @@ Snake::Snake(Game& _game, Position start)
 
 Snake::~Snake()
 {
+    SnakeNode* p = this->tail;
+    while(p != NULL){
+       SnakeNode* nextNode = p->next;
+       delete p;
+       p = nextNode;
+    }
     /*
         Loop: SnakeNode p = tail; p != nullptr;
         
@@ -32,7 +38,7 @@ vector<Position> Snake::getPositions() const
 {
     vector<Position> res;
     for (SnakeNode* p = tail; p != nullptr; p = p->next)
-        res.push_back(p->position);
+        res.push_back(p->position); 
     return res;
 }
 
@@ -51,6 +57,8 @@ vector<Position> Snake::getPositions() const
 ***/
 void Snake::growAtFront(Position newPosition)
 {
+    head -> next = new SnakeNode(newPosition , NULLL) ;
+    head = head ->next ;
     // head of snake grow at new position
 	
     /* YOUR CODE HERE */
@@ -82,17 +90,21 @@ void Snake::growAtFront(Position newPosition)
 void Snake::slideTo(Position newPosition)
 {
 	if (tail->next == nullptr) { 
+        tail->position = newPosition ;
         // position is assigned by new position.
 		/* YOUR CODE HERE */
 	}
 	else {
 		SnakeNode *oldTailNode = tail;
+        tail = tail->next ;
+        oldTailNode-> next = nullptr ;
+        oldTailNode position = newPosition ;
 		//cut the old tail off the snake
         /* YOUR CODE HERE */
 		
 		// move it to the head of the snake
         /* YOUR CODE HERE */
-		head = oldTailNode;
+		head ->next = oldTailNode;
 	}
 }
 
@@ -109,8 +121,10 @@ void Snake::slideTo(Position newPosition)
  * 
 ***/
 void Snake::eatCherry()
+
 {
-	/* YOUR CODE HERE */
+	cherry++;
+    /* YOUR CODE HERE */
 }
 
 /*** 
@@ -142,17 +156,21 @@ void Snake::eatCherry()
 void Snake::move(Direction direction)
 {
     Position newPosition = head->position.move(direction);
-
     /* YOUR CODE HERE */
-    
+    game.snakeMoveTo(newPosition) ;
     // If gameOver, return ; 
     /* YOUR CODE HERE */
-
+    if (game.status == GAME_OVER)
+        return ;
     // If cherry > 0, cherry descrease one and growAtFront() with newPosition
     if (cherry > 0) {
         /* YOUR CODE HERE */
-    } else {
+        cherry -- ;
+        growAtFront(newPosition) ;
+    } 
+    else {
     	game.snakeLeave(tail->position);
+        slideTo(newPosition) ;
         /* YOUR CODE HERE */        
     }
 }

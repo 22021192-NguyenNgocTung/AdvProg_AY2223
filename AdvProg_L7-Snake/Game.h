@@ -31,7 +31,7 @@ public:
 	const int width;
 	const int height;
 	
-    Game(int _width, int _height);
+    Game(int _width, int _height) ;
     ~Game();
 
     bool isGameRunning() const { return status == GAME_RUNNING; }
