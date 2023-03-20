@@ -70,7 +70,7 @@ string chooseWordFromList(const vector<string>& wordList, int index)
 
     s = wordList[index] ;
     for ( int i = 0 ; i < (int)s.size() ; i++){
-        answer += tolwer(s[i]) ;
+        answer += tolower(s[i]);
     }
     return answer;
 }
@@ -104,7 +104,7 @@ char getInputCharacter() {
 ***/
 void updateSecretWord(string& secretWord, const char ch, const string& word)
 {
-    for ( int = 0 ; i < (int)word.size() ; i++){
+    for ( int  i = 0 ; i < (int)word.size() ; i++){
         if ( word[i] == ch) secretWord[i] = ch ;
     }
     // TODO: Update the secret word if the character ch is in the answer word.
