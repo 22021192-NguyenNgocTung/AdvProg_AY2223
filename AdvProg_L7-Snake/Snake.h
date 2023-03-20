@@ -15,7 +15,6 @@ struct SnakeNode
     SnakeNode *next;
     SnakeNode(Position p, SnakeNode* _next = nullptr) : position(p), next(_next) {}
 };
-
 class Snake
 {
     SnakeNode *head, *tail;
