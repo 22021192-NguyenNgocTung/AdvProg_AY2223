@@ -76,9 +76,9 @@ void Painter::turnRight(double degree)
 ***/
 void Painter::randomColor()
 {
-    Uint r = rand() % 256 ;
-    Uint g = rand() % 256 ;
-    Uint b = rand() % 256 ;
+    int r = rand() % 256 ;
+    int g = rand() % 256 ;
+    int b = rand() % 256 ;
     SDL_Color color( r , g , b) ;
     setColor(color) ;   // TODO: set random color    
 }
