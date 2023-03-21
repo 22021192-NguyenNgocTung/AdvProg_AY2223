@@ -79,8 +79,8 @@ void Painter::randomColor()
     int r = rand() % 256 ;
     int g = rand() % 256 ;
     int b = rand() % 256 ;
-    SDL_Color color( r , g , b) ;
-    setColor(color) ;   // TODO: set random color    
+    SDL_Color hcolor = {r , g , b } ;
+    setColor(hcolor) ;   // TODO: set random color    
 }
 
 
