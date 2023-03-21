@@ -151,7 +151,8 @@ bool isCorrectChar(char ch, const string& mask)
 ***/
 bool isWholeWord(const string& mask)
 {
-     bool answer;
+     bool answer = true ;
+
      for ( int i = 0 ; i < (int)mask.size() ; i++){
         if ( mask[i] < 'A' || mask[i] > 'z' ||( mask[i] < 'a' && mask[i] > 'Z')) {
             answer = false ;
